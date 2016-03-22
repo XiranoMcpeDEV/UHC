@@ -14,7 +14,7 @@ use pocketmine\utils\TextFormat;
  */
 class TestMessages extends MiniGameBase {
 
-	public function __construct(UHCgIn $plugin) {
+	public function __construct(UHCPlugIn $plugin) {
 		parent::__construct ( $plugin );
 		$this->uhcmsg = new UHCMessageslugin);
 	}
