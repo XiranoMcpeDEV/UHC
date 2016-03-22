@@ -76,4 +76,89 @@ class UHCPlugIn extends PluginBase implements CommandExecutor {
 		$this->getLogger ()->info ( TextFormat::GREEN . "-------------------------------------------------" );
 		$this->initMessageTests();
 		
-		
+		/check if everything initializared
+		if ($this->uhcManager==null) {
+			$this->getLogger()->info(" manager not initialized properly");
+		}		
+		if ($this->uhcSetup==null) {
+			$this->getLogger()->info(" setup not initialized properly");
+		}
+		if ($this->uhcMessages==null) {
+			$this->getLogger()->info(" messages not initialized properly");
+		}
+		if ($this->uhcBuilder==null) {
+			$this->getLogger()->info(" builder not initialized properly");
+		}
+		if ($this->uhcGameKit==null) {
+			$this->getLogger()->info(" gamekit not initialized properly");
+		}
+	}
+	
+	private function initMinigameComponents() {
+		try {
+		$this->uhcfSetup = new UHCSetup ( $this );
+		$this->uhcfMessages = new UHCMessages ( $this );
+		$this->uhcManager = new UHCManager ( $this );		
+		$this->uhcBuilder = new UHCBlockBuilder ( $this );
+		$this->uhcGameKit = new UHCGameKit ( $this );
+		} catch ( \Exception $ex ) {
+			$this->getLogger ()->error( $ex->getMessage() );
+		}
+	}
+	
+	private function initConfigFile() {
+		try {
+			$this->saveDefaultConfig ();
+			if (! file_exists ( $this->getDataFolder () )) {
+				@mkdir ( $this->getDataFolder (), 0777, true );
+				file_put_contents ( $this->getDataFolder () . "config.yml", $this->getResource ( "config.yml" ) );
+			}
+			$this->reloadConfig ();
+			$this->getConfig ()->getAll ();
+			
+			//set game world
+			$this->UHCWorldName = $this->UHCSetup->getUHCWorldName();			
+		} catch ( \Exception $e ) {
+			$this->getLogger ()->error ( $e->getMessage());
+		}
+	}
+	
+	private function initMessageTests() {
+		if ($this->getConfig ()->get ( "run_selftest_message" ) == "YES") {
+			$stmsg = new TestMessages ( $this );
+			$stmsg->runTests ();
+		}
+	}
+	
+	/**
+	 * OnDisable
+	 * (non-PHPdoc)
+	 *
+	 * @see \pocketmine\plugin\PluginBase::onDisable()
+	 */
+	public function onDisable() {
+		$this->getLogger ()->info ( TextFormat::RED . $this->uhcMessages->getMessageByKey ( "plugin.disable" ) );
+		$this->enabled = false;
+	}
+	
+	public function setGameMode($mode) {
+		$this->gameMode = $mode;
+	}
+	
+	public function getGameMode() {
+		return $this->gameMode;
+	}
+	
+	public function clearSetup() {
+		$this->setupModeAction="";
+	}
+	
+	/**
+	 * OnCommand
+	 * (non-PHPdoc)
+	 *
+	 * @see \pocketmine\plugin\PluginBase::onCommand()
+	 */
+	public function onCommand(CommandSender $sender, Command $command, $label, array $args) {
+		$this->uhcManager->onCommand ( $sender, $command, $label, $args );
+	}
