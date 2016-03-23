@@ -23,7 +23,7 @@ class UHCPlugIn extends PluginBase implements CommandExecutor {
 	//public $config;
 	public $uhcBuilder;
 	public $uhcManager;
-	public uhcMessages
+	public $uhcMessages;
 	public $uhcGameKit;
 	public $uhcSetup;
 	
@@ -31,10 +31,6 @@ class UHCPlugIn extends PluginBase implements CommandExecutor {
 	public $greenTeamPlayers = [ ];
 	public $yellowTeamPLayers = [ ];
 	public $gameStats = [ ];
-	
-	// players with the flag
-	public $playersWithRedFlag = [ ];
-	public $playersWithBlueFlag = [ ];
 	
 	// keep game statistics
 	public $gameMode = 0;
