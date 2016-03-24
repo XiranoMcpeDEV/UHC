@@ -28,9 +28,13 @@ class UHCPlugIn extends PluginBase implements CommandExecutor {
 	public $uhcSetup;
 	
 	// keep track of all points
-	public $greenTeamPlayers = [ ];
-	public $yellowTeamPLayers = [ ];
+	public $goldTeamPlayers = [ ];
+	public $diamondTeamPLayers = [ ];
 	public $gameStats = [ ];
+	
+        // players Winning
+	public $playersWithGold = [ ];
+	public $playersWithDiamond = [ ];
 	
 	// keep game statistics
 	public $gameMode = 0;
