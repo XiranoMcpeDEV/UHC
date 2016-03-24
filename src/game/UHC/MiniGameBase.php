@@ -2,11 +2,19 @@
 
 namespace game\ctf;
 
+/**
+ * UHC PlugIn - MCPE Mini-Game
+ *
+ * Copyright (C) MCPE_PluginDev
+ *
+ * @author DavidJBrockway aka MCPE_PluginDev
+ *        
+ */
 
 
 abstract class MiniGameBase {		
 	protected $plugin;
-	public function __construct(CTFPlugIn $plugin) {
+	public function __construct(UHCPlugIn $plugin) {
 		if($plugin === null){
 			throw new \InvalidStateException("plugin may not be null");
 		}
@@ -14,23 +22,23 @@ abstract class MiniGameBase {
 	}
 	
 	protected function getManager() {
-		return $this->plugin->ctfManager;
+		return $this->plugin->uhcManager;
 	}
 	protected function getPlugin() {
 		return $this->plugin;
 	}
 	protected function getMsg($key) {
-		return $this->plugin->ctfMessages->getMessageByKey ( $key );
+		return $this->plugin->uhcMessages->getMessageByKey ( $key );
 	}
 	protected function getSetup() {
-		return $this->plugin->ctfSetup;
+		return $this->plugin->uhcSetup;
 	}
 	protected function getBuilder() {
 		return $this->plugin->ctfBuilder;
 	}
 	
 	protected function getGameKit() {
-		return $this->plugin->ctfGameKit;
+		return $this->plugin->uhcGameKit;
 	}
 	
 	protected function getLog() {
