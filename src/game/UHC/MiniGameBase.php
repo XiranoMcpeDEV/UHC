@@ -1,6 +1,6 @@
 <?php
 
-namespace game\ctf;
+namespace game\UHC;
 
 /**
  * UHC PlugIn - MCPE Mini-Game
