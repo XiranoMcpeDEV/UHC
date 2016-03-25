@@ -2,5 +2,5 @@ name: MCPE_PluginDev_UHC
 version: 1.0.0
 api: 1.0.0
 main: game\UHC\UHCPlugIn
-author: MCPE_PluginDev
+author: UniversMakers/MCPE_PluginDev
 
