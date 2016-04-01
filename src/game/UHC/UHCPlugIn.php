@@ -72,11 +72,11 @@ class UHCPlugIn extends PluginBase implements CommandExecutor {
 		$this->initConfigFile ();				
 		$this->enabled = true;
 		$this->getServer ()->getPluginManager ()->registerEvents ( new CTFListener ( $this ), $this );
-		$this->getLogger ()->info ( TextFormat::GREEN . "MCPE_PluginDev UHC Enabled v1.0.0"
+		$this->getLogger ()->info ( TextFormat::GREEN . " UHC PE Enabled v1.0.0" );
 		$this->getLogger ()->info ( TextFormat::GREEN . "-------------------------------------------------" );
 		$this->initMessageTests();
 		
-		/check if everything initializared
+		//check if everything initializared
 		if ($this->uhcManager==null) {
 			$this->getLogger()->info(" manager not initialized properly");
 		}		
